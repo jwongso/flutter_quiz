@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './home_page.dart';
 import './quiz.dart';
 import './result.dart';
 
@@ -77,7 +78,9 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(_totalScore, _resetQuiz),
+            : _questionIndex == _questions.length
+                ? HomePage()
+                : Result(_totalScore, _resetQuiz),
       ),
     );
   }
