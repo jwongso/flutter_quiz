@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './home_page.dart';
 import './quiz.dart';
-import './result.dart';
 
 void main() => runApp(MyApp());
 
@@ -58,11 +57,10 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _questionIndex++;
     });
-    if (_questionIndex < _questions.length) {
-      print("We have more questions!");
-    } else {
-      print("No more question!");
-    }
+  }
+
+  int get totalScore {
+    return _totalScore;
   }
 
   @override
@@ -78,9 +76,10 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : _questionIndex == _questions.length
-                ? HomePage()
-                : Result(_totalScore, _resetQuiz),
+            : HomePage(
+                totalScore: totalScore,
+                resetQuiz: _resetQuiz,
+              ),
       ),
     );
   }
